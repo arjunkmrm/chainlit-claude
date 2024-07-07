@@ -98,6 +98,7 @@ TOOL_FUNCTIONS = {
     "calculator": calculator
 }
 
+# send chat messages to claude api
 async def call_claude(chat_messages):
     msg = cl.Message(content="", author="Claude")
 
@@ -116,10 +117,12 @@ async def call_claude(chat_messages):
 
     return response
 
+# initialise chat
 @cl.on_chat_start
 async def start_chat():
     cl.user_session.set("chat_messages", [])
 
+# route to functions based on tool call
 @cl.step(type="tool") 
 async def call_tool(tool_use):
     tool_name = tool_use.name
@@ -141,6 +144,7 @@ async def call_tool(tool_use):
     current_step.language = "json"
     return current_step.output
 
+# main chat
 @cl.on_message
 async def chat(message: cl.Message):
     chat_messages = cl.user_session.get("chat_messages")
