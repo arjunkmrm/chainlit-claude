@@ -1,4 +1,4 @@
-# Chainlit Claude Example with Function Calling
+# Chainlit Anthropic Example with Function Calling
 
 This project demonstrates how to create a chatbot using Chainlit and Anthropic's Claude AI model, showcasing function calling capabilities with example tools.
 
